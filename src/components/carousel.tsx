@@ -10,27 +10,24 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const handleNext = () => {
     setCurrentSlide((prevSlide) => {
       console.log(prevSlide);
-      
+
       return prevSlide === characters.length - 1 ? 0 : prevSlide + 1;
     });
   };
-
 
   const handleBack = () => {
     setCurrentSlide((prevSlide) => {
       console.log(prevSlide);
       return prevSlide === 0 ? characters.length - 1 : prevSlide - 1;
     });
-    
   };
-  const handleChoose = (character : Character) => {
+  const handleChoose = (character: Character) => {
     localStorage.setItem("character", JSON.stringify(character));
     // Optionally, you can also navigate to another page or perform other actions here.
   };
@@ -48,7 +45,6 @@ export const Carousel = () => {
               <div className="max-h-[400px] overflow-hidden">
                 <Image
                   hasMasterSpinner
-
                   className="h-full w-full "
                   src={character.media.src}
                   alt={character.media.alt}

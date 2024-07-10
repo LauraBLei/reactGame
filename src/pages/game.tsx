@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { GameContext } from "../hooks/gameContext";
 import { pathOne } from "./paths/pathOne";
-import { Locations } from "./paths/pathOne";
 
 export const GamePage = () => {
   const context = useContext(GameContext);
@@ -40,7 +39,7 @@ export const GamePage = () => {
             {currentLocation.text.replaceAll("{name}", context.name)}
           </p>
           <div className="flex gap-4 mt-4">
-            {currentLocation.path.map((element: Locations, i) => (
+            {currentLocation.path.map((_, i) => (
               <button
                 className="border-2 border-black px-4 py-1 cursor-pointer font-uncial"
                 onClick={() => setLocation(currentLocation.path[i])}
