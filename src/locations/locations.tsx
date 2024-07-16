@@ -25,6 +25,7 @@ export enum Locations {
   CircleOfTheGods = "Circle Of The Gods",
   AetherPeak = "Aether Peak",
   EaglesPeak = "Eagles Peak",
+  shop = "Shop",
 }
 
 export const LocationList: LocationType = {
@@ -40,7 +41,7 @@ export const LocationList: LocationType = {
   "Ironwood Avenue": {
     text: "Ironwood Avenue",
     media: {
-      src: "./src/assets/village/tavern.png",
+      src: "./src/assets/village/ironwoodAvenue.png",
       alt: "",
     },
     path: [Locations.EmeraldPlaza, Locations.Tavern, Locations.BackGate],
@@ -49,10 +50,10 @@ export const LocationList: LocationType = {
   "Emerald Plaza": {
     text: "Emerald Plaza",
     media: {
-      src: "",
+      src: "./src/assets/village/EmeraldPlaza.png",
       alt: "",
     },
-    path: [Locations.outsideTavern, Locations.CityGates],
+    path: [Locations.outsideTavern, Locations.CityGates, Locations.shop],
     enemy: [],
   },
   "City Gates": {
@@ -125,6 +126,15 @@ export const LocationList: LocationType = {
       alt: "",
     },
     path: [Locations.EvershadeForest],
+    enemy: [],
+  },
+  Shop: {
+    text: "Shop",
+    media: {
+      src: "./src/assets/village/shop.png",
+      alt: "",
+    },
+    path: [Locations.EmeraldPlaza],
     enemy: [],
   },
 };

@@ -5,6 +5,7 @@ import { MonstersList } from "../components/enemies";
 import { HpBarCharacter, HpBarEnemy } from "../components/hpBar";
 import { CharacterContext } from "../hooks/characterContext";
 import { Inventory } from "../components/inventory";
+import { Shop, ShopInventory } from "../components/shop";
 
 export const GamePage = () => {
   const context = useContext(GameContext);
@@ -16,27 +17,67 @@ export const GamePage = () => {
   };
 
   return (
-    <div className="bg-black w-full h-screen flex justify-center items-center">
+    <div className="bg-black w-full h-screen flex justify-center">
       <div
-        className="relative max-w-[1200px] w-full max-h-[1000px] h-full bg-no-repeat bg-cover flex flex-col"
+        className="relative max-w-[1200px] w-full max-h-[900px] h-full bg-no-repeat bg-cover flex flex-col bg-center"
         style={bgImageStyle}
       >
-        <div className="max-w-[200px] place-self-end mr-7 mt-6">
-          <details>
-            <summary className="cursor-pointer list-none text-2xl font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
-              Inventory
-            </summary>
-            <div className="absolute max-w-[800px] right-8 mt-4 bg-black px-9 py-4 border-2 border-[#d9bf9e] h-[600px] z-10">
-              <Inventory />
-            </div>
-          </details>
-        </div>
+        {context.location === "Shop" ? <InShop /> : <NormalTop />}
+
         <div className="flex justify-center bg-[#d9bf9e] w-auto place-self-center border-2 border-black">
           <h1 className="text-6xl font-uncial px-6 py-1">{context.location}</h1>
         </div>
 
-        {context.fighting ? <EnemyLocation /> : <Location />}
+        {context.fighting ? (
+          <EnemyLocation />
+        ) : context.location === "Shop" ? (
+          <Shop />
+        ) : (
+          <Location />
+        )}
       </div>
+    </div>
+  );
+};
+
+const InShop = () => {
+  return (
+    <div className="mr-7  mt-6 flex justify-between w-full">
+      <div className="max-w-[200px] ml-7">
+        <details>
+          <summary className="cursor-pointer list-none text-2xl font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
+            Shop
+          </summary>
+          <div className="absolute max-w-[800px] left-8 mt-4 bg-black px-9 py-4 border-2 border-[#d9bf9e] h-[600px] z-10">
+            <ShopInventory />
+          </div>
+        </details>
+      </div>
+      <div>
+        <details>
+          <summary className="cursor-pointer list-none text-2xl mr-7 font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
+            Inventory
+          </summary>
+          <div className="absolute max-w-[800px] right-7 mt-4 bg-black px-9 py-4 border-2 border-[#d9bf9e] h-[600px] z-10">
+            <Inventory />
+          </div>
+        </details>
+      </div>
+    </div>
+  );
+};
+
+const NormalTop = () => {
+  return (
+    <div className="flex mr-7 place-self-end mt-7">
+      <details>
+        <summary className="cursor-pointer list-none text-2xl mr-7 font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
+          Inventory
+        </summary>
+        <div className="absolute max-w-[800px] right-7 mt-4 bg-black px-9 py-4 border-2 border-[#d9bf9e] h-[600px] z-10">
+          <Inventory />
+        </div>
+      </details>
     </div>
   );
 };
@@ -56,7 +97,7 @@ const Location = () => {
 
   return (
     <div
-      className="bg-no-repeat bg-cover w-full h-auto px-[60px] py-10 pt-[100px] flex items-center gap-6 absolute bottom-0 mb-[-100px]"
+      className="bg-no-repeat bg-cover w-full h-auto px-[60px] py-10 pt-[100px] flex items-center gap-6 absolute bottom-0 mb-[-310px]"
       style={bgText}
     >
       <div className="overflow-hidden w-full max-w-[250px] max-h-[220px] left-0 bottom-[250px] shadow-2xl">

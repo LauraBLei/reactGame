@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { CharacterContext } from "../hooks/characterContext";
+
 export const InventoryList = [""];
 
 export const Inventory = () => {
+  const CContext = useContext(CharacterContext);
+
   return (
     <div>
       <div className="flex justify-evenly mb-6">
@@ -10,7 +15,7 @@ export const Inventory = () => {
             src="./src/assets/items/coins/bronze.png"
             alt="Image of bronze coins"
           />
-          <h2 className="text-white font-uncial text-2xl">0</h2>
+          <h2 className="text-white font-uncial text-2xl">{CContext.bronze}</h2>
         </div>
         <div className="flex">
           <img
@@ -18,7 +23,7 @@ export const Inventory = () => {
             src="./src/assets/items/coins/silver.png"
             alt="Image of silver coins"
           />
-          <h2 className="text-white font-uncial text-2xl">0</h2>
+          <h2 className="text-white font-uncial text-2xl">{CContext.silver}</h2>
         </div>
         <div className="flex">
           <img
@@ -26,7 +31,7 @@ export const Inventory = () => {
             src="./src/assets/items/coins/gold.png"
             alt="Image og gold coins"
           />
-          <h2 className="text-white font-uncial text-2xl">0</h2>
+          <h2 className="text-white font-uncial text-2xl">{CContext.gold}</h2>
         </div>
       </div>
       <div className="flex gap-6 mb-8">
