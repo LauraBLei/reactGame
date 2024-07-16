@@ -1,26 +1,45 @@
 import { createContext, useState } from "react";
-import { Locations } from "../pages/paths/pathOne";
-
+import { Locations } from "../locations/locations";
 
 type GameContextType = {
-    name: string;
-    location: string;
-    setName: React.Dispatch<React.SetStateAction<string>>;
-    setLocation:React.Dispatch<React.SetStateAction<Locations>>
+  location: Locations;
+  fighting: boolean;
+  PrevLocation: Locations;
+  MonsterHP: number;
+
+  setLocation: React.Dispatch<React.SetStateAction<Locations>>;
+  setFighting: React.Dispatch<React.SetStateAction<boolean>>;
+  setPrevLocation: React.Dispatch<React.SetStateAction<Locations>>;
+  setMonsterHP: React.Dispatch<React.SetStateAction<number>>;
 };
-export const GameContext = createContext<GameContextType>({} as GameContextType);
+export const GameContext = createContext<GameContextType>(
+  {} as GameContextType
+);
 
 type ContextProviderProps = {
-    children: React.ReactNode;
-  };
+  children: React.ReactNode;
+};
 
-export const GameProvider = ({ children }:ContextProviderProps) => {
-  const [name, setName] = useState("Tompe");
-  const [location, setLocation] = useState(Locations.EnchantedForest)
+export const GameProvider = ({ children }: ContextProviderProps) => {
+  const [location, setLocation] = useState(Locations.Tavern);
+  const [fighting, setFighting] = useState(false);
+  const [PrevLocation, setPrevLocation] = useState(Locations.Tavern);
+  const [MonsterHP, setMonsterHP] = useState(100);
+
   return (
-    <GameContext.Provider value={{ name, setName, location, setLocation}}>
+    <GameContext.Provider
+      value={{
+        location,
+        setLocation,
+        fighting,
+        setFighting,
+        PrevLocation,
+        setPrevLocation,
+        MonsterHP,
+        setMonsterHP,
+      }}
+    >
       {children}
     </GameContext.Provider>
   );
 };
-

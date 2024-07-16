@@ -1,12 +1,10 @@
 import { Carousel } from "../components/carousel";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { GameContext } from "../hooks/gameContext";
-
+import { CharacterContext } from "../hooks/characterContext";
 
 export const CharacterSelection = () => {
-const context = useContext(GameContext)
-
+  const context = useContext(CharacterContext);
 
   return (
     <>
@@ -16,9 +14,19 @@ const context = useContext(GameContext)
           <h1 className="text-8xl">Choose Your Character</h1>
           <Carousel />
           <div className="flex flex-col gap-5 items-center mt-5">
-            <label htmlFor="" className="text-5xl">Character Name</label>
-            <input type="text" name="name" className="w-full text-2xl text-black px-3 py-2" onChange={(event) => context?.setName(event.target.value)} required/>
-            <Link to="/Game" className="text-6xl"> Play
+            <label htmlFor="" className="text-5xl">
+              Character Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              className="w-full text-2xl text-black px-3 py-2"
+              onChange={(event) => context?.setName(event.target.value)}
+              required
+            />
+            <Link to="/Game" className="text-6xl">
+              {" "}
+              Play
             </Link>
           </div>
         </div>

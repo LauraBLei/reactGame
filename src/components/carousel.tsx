@@ -1,5 +1,5 @@
-import { Character, characters } from "./characters";
-
+import { characters } from "./characters";
+import { useContext } from "react";
 import {
   CarouselProvider,
   Slider,
@@ -10,6 +10,7 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useState } from "react";
+import { CharacterContext } from "../hooks/characterContext";
 
 export const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -27,10 +28,9 @@ export const Carousel = () => {
       return prevSlide === 0 ? characters.length - 1 : prevSlide - 1;
     });
   };
-  const handleChoose = (character: Character) => {
-    localStorage.setItem("character", JSON.stringify(character));
-    // Optionally, you can also navigate to another page or perform other actions here.
-  };
+
+  const context = useContext(CharacterContext);
+
   return (
     <CarouselProvider
       naturalSlideWidth={800}
@@ -53,7 +53,7 @@ export const Carousel = () => {
               <p className="mt-6 text-6xl">{character.class}</p>
               <button
                 className="bg-white text-black px-5 text-3xl rounded"
-                onClick={() => handleChoose(character)}
+                onClick={() => context.setCharacter(characters[index])}
               >
                 Choose
               </button>
