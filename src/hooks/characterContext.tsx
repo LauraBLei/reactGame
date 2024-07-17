@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
-import { Character, characters } from "../components/characters";
+import { Character, characters } from "../gameData/characters";
+import { WeaponType, ArmorType } from "../gameData/gear";
+import { MonsterLoot } from "../gameData/loot";
 
 type characterContextType = {
   name: string;
@@ -7,18 +9,26 @@ type characterContextType = {
   currentHP: number;
   character: Character;
   maxHP: number;
-  bronze: number;
-  silver: number;
   gold: number;
+  Inventory: (WeaponType | ArmorType | MonsterLoot)[];
+  chest: ArmorType | null;
+  gauntlet: ArmorType | null;
+  boots: ArmorType | null;
+  weapon: WeaponType | null;
 
   setName: React.Dispatch<React.SetStateAction<string>>;
   setCharacter: React.Dispatch<React.SetStateAction<Character>>;
   setCharacterAttack: React.Dispatch<React.SetStateAction<number>>;
   setCurrentHP: React.Dispatch<React.SetStateAction<number>>;
   setMaxHP: React.Dispatch<React.SetStateAction<number>>;
-  setBronze: React.Dispatch<React.SetStateAction<number>>;
-  setSilver: React.Dispatch<React.SetStateAction<number>>;
   setGold: React.Dispatch<React.SetStateAction<number>>;
+  setInventory: React.Dispatch<
+    React.SetStateAction<(WeaponType | ArmorType | MonsterLoot)[]>
+  >;
+  setChest: React.Dispatch<React.SetStateAction<ArmorType | null>>;
+  setGauntlet: React.Dispatch<React.SetStateAction<ArmorType | null>>;
+  setBoots: React.Dispatch<React.SetStateAction<ArmorType | null>>;
+  setWeapon: React.Dispatch<React.SetStateAction<WeaponType | null>>;
 };
 
 export const CharacterContext = createContext<characterContextType>(
@@ -35,9 +45,14 @@ export const CharacterProvider = ({ children }: ContextProviderProps) => {
   const [currentHP, setCurrentHP] = useState(100);
   const [characterAttack, setCharacterAttack] = useState(10);
   const [maxHP, setMaxHP] = useState(100);
-  const [bronze, setBronze] = useState(0);
-  const [silver, setSilver] = useState(0);
-  const [gold, setGold] = useState(0);
+  const [gold, setGold] = useState(20);
+  const [Inventory, setInventory] = useState<
+    (WeaponType | ArmorType | MonsterLoot)[]
+  >([]);
+  const [chest, setChest] = useState<ArmorType | null>(null);
+  const [gauntlet, setGauntlet] = useState<ArmorType | null>(null);
+  const [boots, setBoots] = useState<ArmorType | null>(null);
+  const [weapon, setWeapon] = useState<WeaponType | null>(null);
 
   return (
     <CharacterContext.Provider
@@ -52,12 +67,18 @@ export const CharacterProvider = ({ children }: ContextProviderProps) => {
         setName,
         maxHP,
         setMaxHP,
-        bronze,
-        setBronze,
-        silver,
-        setSilver,
         gold,
         setGold,
+        Inventory,
+        setInventory,
+        setChest,
+        chest,
+        gauntlet,
+        setGauntlet,
+        boots,
+        setBoots,
+        weapon,
+        setWeapon,
       }}
     >
       {children}

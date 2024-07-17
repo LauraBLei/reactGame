@@ -1,4 +1,21 @@
-export const armor = [
+import { Media } from "./characters";
+export type ArmorType = {
+  name: string;
+  media: Media;
+  hp: number;
+  type: string;
+  cost: number;
+};
+
+export type WeaponType = {
+  name: string;
+  media: Media;
+  attack: number;
+  type: string;
+  cost: number;
+};
+
+export const armor: ArmorType[] = [
   {
     name: "Sentry's Mail",
     media: {
@@ -6,6 +23,7 @@ export const armor = [
       alt: "chest piece armor",
     },
     hp: 30,
+    type: "Chest",
     cost: 10,
   },
   {
@@ -15,20 +33,22 @@ export const armor = [
       alt: "chest piece armor",
     },
     hp: 150,
+    type: "Chest",
     cost: 10,
   },
   {
     name: "Serpentbanes rope",
     media: {
-      src: "./src/assets/items/gear/armor2.png",
+      src: "./src/assets/items/gear/Rope2.png",
       alt: "chest piece armor",
     },
     hp: 250,
+    type: "Chest",
     cost: 10,
   },
 ];
 
-export const hands = [
+export const hands: ArmorType[] = [
   {
     name: "Sentry's gauntlets",
     media: {
@@ -36,6 +56,7 @@ export const hands = [
       alt: "gauntlets",
     },
     hp: 10,
+    type: "Gauntlet",
     cost: 10,
   },
   {
@@ -44,18 +65,20 @@ export const hands = [
       src: "./src/assets/items/gear/hands2.png",
       alt: "gauntlets",
     },
+    type: "Gauntlet",
     hp: 50,
     cost: 10,
   },
 ];
 
-export const boots = [
+export const boots: ArmorType[] = [
   {
     name: "Sentry's Boots",
     media: {
       src: "./src/assets/items/gear/boots2.png",
-      alt: "Boots",
+      alt: "Boot",
     },
+    type: "Boot",
     hp: 10,
     cost: 10,
   },
@@ -66,11 +89,12 @@ export const boots = [
       alt: "Boots",
     },
     hp: 50,
+    type: "Boot",
     cost: 10,
   },
 ];
 
-export const weapons = [
+export const weapons: WeaponType[] = [
   {
     name: "Elderglow Staff",
     media: {

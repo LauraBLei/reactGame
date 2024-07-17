@@ -1,9 +1,17 @@
-import { armor, hands, boots, weapons } from "./gear";
+import {
+  ArmorType,
+  hands,
+  boots,
+  weapons,
+  WeaponType,
+  armor,
+} from "../gameData/gear";
 import { GameContext } from "../hooks/gameContext";
 import { CharacterContext } from "../hooks/characterContext";
 import { useContext } from "react";
-import { LocationList } from "../locations/locations";
+import { LocationList } from "./locations";
 import Popup from "reactjs-popup";
+import { ImageButton } from "../components/img";
 
 export const Shop = () => {
   const context = useContext(GameContext);
@@ -54,6 +62,18 @@ export const Shop = () => {
 };
 
 export const ShopInventory = () => {
+  const CContext = useContext(CharacterContext);
+
+  const handlePurchase = (e: WeaponType | ArmorType) => {
+    if (e.cost > CContext.gold) {
+      alert("You do not have enough gold to purchase this item!");
+      return;
+    }
+
+    CContext.setGold(CContext.gold - e.cost);
+    CContext.setInventory([...CContext.Inventory, e]);
+  };
+
   return (
     <div className="max-w-[500px] flex flex-wrap gap-6 mt-4 max-h-[800px] overflow-y-auto">
       {armor.map((e, i) => (
@@ -61,15 +81,24 @@ export const ShopInventory = () => {
           <Popup
             trigger={
               <button className="h-[80px] w-[80px] bg-[#d9bf9e]">
-                <img key={i} src={`${e.media.src}`} alt="e.media.alt" />
+                <img key={i} src={e.media.src} alt={e.media.alt} />;
               </button>
             }
           >
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
+              <h3 className="font-uncial text-2xl">{`${e.name}`}</h3>
               <h3 className="font-uncial text-2xl">Price: {`${e.cost}`}</h3>
               <h3 className="font-uncial text-2xl">
                 Attack Bonus: {`${e.hp}`}
               </h3>
+              <button
+                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                onClick={() => {
+                  handlePurchase(e);
+                }}
+              >
+                Buy
+              </button>
             </div>
           </Popup>
         </div>
@@ -79,13 +108,22 @@ export const ShopInventory = () => {
           <Popup
             trigger={
               <button className="h-[80px] w-[80px] bg-[#d9bf9e]">
-                <img key={i} src={`${e.media.src}`} alt="e.media.alt" />
+                <img key={i} src={e.media.src} alt={e.media.alt} />;
               </button>
             }
           >
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
+              <h3 className="font-uncial text-2xl">{`${e.name}`}</h3>
               <h3 className="font-uncial text-2xl">Price: {`${e.cost}`}</h3>
               <h3 className="font-uncial text-2xl">HP Bonus: {`${e.hp}`}</h3>
+              <button
+                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                onClick={() => {
+                  handlePurchase(e);
+                }}
+              >
+                Buy
+              </button>
             </div>
           </Popup>
         </div>
@@ -95,33 +133,49 @@ export const ShopInventory = () => {
           <Popup
             trigger={
               <button className="h-[80px] w-[80px] bg-[#d9bf9e]">
-                <img key={i} src={`${e.media.src}`} alt="e.media.alt" />
+                <img key={i} src={e.media.src} alt={e.media.alt} />;
               </button>
             }
           >
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
+              <h3 className="font-uncial text-2xl">{`${e.name}`}</h3>
               <h3 className="font-uncial text-2xl">Price: {`${e.cost}`}</h3>
               <h3 className="font-uncial text-2xl">HP Bonus: {`${e.hp}`}</h3>
+              <button
+                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                onClick={() => {
+                  handlePurchase(e);
+                }}
+              >
+                Buy
+              </button>
             </div>
           </Popup>
         </div>
       ))}
-      {weapons.map((e, i) => (
+      {weapons.map((e: WeaponType, i) => (
         <div>
           <Popup
             trigger={
+              // <ImageButton key2={i + 33} src={e.media.src} alt={e.media.alt} />
               <button className="h-[80px] w-[80px] bg-[#d9bf9e]">
-                <img key={i} src={`${e.media.src}`} alt="e.media.alt" />
+                <img key={i} src={e.media.src} alt={e.media.alt} />;
               </button>
             }
           >
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
+              <h3 className="font-uncial text-2xl">{`${e.name}`}</h3>
               <h3 className="font-uncial text-2xl">Price: {`${e.cost}`}</h3>
               <h3 className="font-uncial text-2xl">Type: {`${e.type}`}</h3>
               <h3 className="font-uncial text-2xl">
                 Attack Bonus: {`${e.attack}`}
               </h3>
-              <button className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl">
+              <button
+                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                onClick={() => {
+                  handlePurchase(e);
+                }}
+              >
                 Buy
               </button>
             </div>

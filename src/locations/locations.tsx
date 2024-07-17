@@ -1,11 +1,11 @@
-import { Media } from "../components/characters";
-import { Monsters } from "../components/enemies";
+import { Media } from "../gameData/characters";
+import { MonsterNames } from "../gameData/enemies";
 
 export type Location = {
   text: string;
   media: Media;
   path: Locations[];
-  enemy: Monsters[];
+  enemy: MonsterNames[];
 };
 
 export type LocationType = {
@@ -117,7 +117,7 @@ export const LocationList: LocationType = {
       alt: "",
     },
     path: [Locations.EvershadeForest],
-    enemy: [Monsters.FeatherLeaf],
+    enemy: [MonsterNames.FeatherLeaf],
   },
   "Elderglow Lake": {
     text: "Elderglow Lake",

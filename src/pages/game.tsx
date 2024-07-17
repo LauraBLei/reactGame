@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GameContext } from "../hooks/gameContext";
 import { LocationList } from "../locations/locations";
-import { MonstersList } from "../components/enemies";
+import { MonstersList } from "../gameData/enemies";
 import { HpBarCharacter, HpBarEnemy } from "../components/hpBar";
 import { CharacterContext } from "../hooks/characterContext";
 import { Inventory } from "../components/inventory";
-import { Shop, ShopInventory } from "../components/shop";
+import { Shop, ShopInventory } from "../locations/shop";
+import { loot, MonsterLoot, MonsterLootList } from "../gameData/loot";
 
 export const GamePage = () => {
   const context = useContext(GameContext);
@@ -186,10 +187,30 @@ const EnemyLocation = () => {
 
 const EnemyDefeated = () => {
   const context = useContext(GameContext);
+  const CContext = useContext(CharacterContext);
+  const prevLocation = LocationList[context.PrevLocation];
+  const enemy = MonstersList[prevLocation.enemy[0]];
+  const loot = enemy.loot;
 
   const bgText = {
     backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
   };
+
+  useEffect(() => {
+    const droppedItems = [];
+    for (let i = 0; i < loot.length; i++) {
+      const e: MonsterLoot = MonsterLootList[loot[i]];
+
+      const r = Math.random();
+      console.log(r);
+
+      if (r <= e.dropChance) {
+        droppedItems.push(e);
+      }
+    }
+
+    CContext.setInventory([...CContext.Inventory, ...droppedItems]);
+  }, []);
 
   return (
     <div
@@ -249,5 +270,17 @@ const Fighting = () => {
         </button>
       </div>
     </div>
+  );
+};
+
+export const LootEnemy = () => {
+  const context = useContext(GameContext);
+  const CContext = useContext(CharacterContext);
+  const prevLocation = LocationList[context.PrevLocation];
+  const enemy = MonstersList[prevLocation.enemy[0]];
+
+  const loot = enemy.loot;
+  loot.map((e) =>
+    CContext.setInventory([...CContext.Inventory, MonsterLootList[e]])
   );
 };

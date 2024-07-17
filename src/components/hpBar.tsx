@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GameContext } from "../hooks/gameContext";
 import { CharacterContext } from "../hooks/characterContext";
 import { LocationList } from "../locations/locations";
-import { MonstersList } from "./enemies";
+import { MonstersList } from "../gameData/enemies";
 
 export const HpBarEnemy = () => {
   const context = useContext(GameContext);
