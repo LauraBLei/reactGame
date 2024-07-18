@@ -11,7 +11,6 @@ import { CharacterContext } from "../hooks/characterContext";
 import { useContext } from "react";
 import { LocationList } from "./locations";
 import Popup from "reactjs-popup";
-import { ImageButton } from "../components/img";
 
 export const Shop = () => {
   const context = useContext(GameContext);
