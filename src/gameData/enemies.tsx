@@ -1,4 +1,4 @@
-import { Media } from "./components/characters";
+import { Media } from "./characters";
 import { loot } from "./loot";
 
 export type Monster = {
@@ -14,6 +14,7 @@ export type MonstersList = {
 
 export enum MonsterNames {
   FeatherLeaf = "Feather Leaf",
+  Siren = "Siren",
 }
 
 export const MonstersList: MonstersList = {
@@ -25,5 +26,14 @@ export const MonstersList: MonstersList = {
       alt: "Image of a small little green furry monster",
     },
     loot: [loot.FeatherLeafSkeleton, loot.FeatherLeafFluid],
+  },
+  Siren: {
+    hp: 250,
+    attack: 30,
+    media: {
+      src: "./src/assets/enemies/siren.png",
+      alt: "Image of a siren",
+    },
+    loot: [loot.SirenSkull, loot.SirenScale],
   },
 };

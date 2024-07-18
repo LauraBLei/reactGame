@@ -26,6 +26,7 @@ export enum Locations {
   AetherPeak = "Aether Peak",
   EaglesPeak = "Eagles Peak",
   shop = "Shop",
+  tavernRoom = "Tavern Room",
 }
 
 export const LocationList: LocationType = {
@@ -126,7 +127,7 @@ export const LocationList: LocationType = {
       alt: "",
     },
     path: [Locations.EvershadeForest],
-    enemy: [],
+    enemy: [MonsterNames.Siren],
   },
   Shop: {
     text: "Shop",
@@ -135,6 +136,15 @@ export const LocationList: LocationType = {
       alt: "",
     },
     path: [Locations.EmeraldPlaza],
+    enemy: [],
+  },
+  "Tavern Room": {
+    text: "You were found unconscious by a villager and brought to a room at the Tavern, the doctor took a look at you, but it cost you some money.",
+    media: {
+      src: "./src/assets/village/tavernRoom.png",
+      alt: "Image of a tavern room with a double bed, a fireplace and a window with a nice view of some mountains.",
+    },
+    path: [Locations.Tavern],
     enemy: [],
   },
 };

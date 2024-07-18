@@ -51,7 +51,7 @@ export const Inventory = () => {
     );
   };
 
-  const handleUnequip = (e: WeaponType | ArmorType | MonsterLoot | null) => {
+  const handleUnequip = (e: WeaponType | ArmorType | null) => {
     if (e === null) {
       return;
     }
@@ -64,7 +64,7 @@ export const Inventory = () => {
       CContext.setCharacterAttack(CContext.characterAttack + e.attack);
     } else {
       // Equipping an armor piece
-      if (e.type === "Gauntlet" && CContext.gauntlet) {
+      if ("Gauntlet" in e && CContext.gauntlet) {
         CContext.setInventory([...CContext.Inventory, CContext.gauntlet]);
         CContext.setMaxHP(CContext.maxHP - e.hp);
       } else if (e.type === "Boot" && CContext.boots) {
@@ -215,14 +215,14 @@ export const Inventory = () => {
                 <h3 className="font-uncial text-2xl">Price: {`${e.name}`}</h3>
 
                 <h3 className="font-uncial text-2xl">Price: {`${e.cost}`}</h3>
-                {e.hasOwnProperty("hp") && (
+                {"hp" in e && (
                   <>
                     <h3 className="font-uncial text-2xl">
                       HP Bonus: {`${e.hp}`}
                     </h3>
                   </>
                 )}
-                {e.hasOwnProperty("attack") && (
+                {"attack" in e && (
                   <>
                     <h3 className="font-uncial text-2xl">
                       Type: {`${e.type}`}
@@ -243,14 +243,16 @@ export const Inventory = () => {
                       sell
                     </button>
                   )}
-                  <button
-                    className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
-                    onClick={() => {
-                      handleEquip(e);
-                    }}
-                  >
-                    Equip
-                  </button>
+                  {"attack" in e && "hp" in e && (
+                    <button
+                      className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                      onClick={() => {
+                        handleEquip(e);
+                      }}
+                    >
+                      Equip
+                    </button>
+                  )}
                 </div>
               </div>
             </Popup>

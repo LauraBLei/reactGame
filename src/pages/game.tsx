@@ -1,12 +1,12 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { GameContext } from "../hooks/gameContext";
 import { LocationList } from "../locations/locations";
 import { MonstersList } from "../gameData/enemies";
-import { HpBarCharacter, HpBarEnemy } from "../components/hpBar";
+import { HpBarCharacter } from "../components/hpBar";
 import { CharacterContext } from "../hooks/characterContext";
 import { Inventory } from "../components/inventory";
 import { Shop, ShopInventory } from "../locations/shop";
-import { loot, MonsterLoot, MonsterLootList } from "../gameData/loot";
+import { EnemyLocation } from "../locations/combat";
 
 export const GamePage = () => {
   const context = useContext(GameContext);
@@ -95,192 +95,57 @@ const Location = () => {
   const setLocation = context.setLocation;
   const character = CContext.character;
   const setPrevLocation = context.setPrevLocation;
-
   return (
     <div
-      className="bg-no-repeat bg-cover w-full h-auto px-[60px] py-10 pt-[100px] flex items-center gap-6 absolute bottom-0 mb-[-310px]"
+      className="bg-no-repeat bg-cover w-full h-auto px-[60px] py-10 pt-[100px] flex flex-col items-center gap-6 absolute bottom-0 mb-[-350px]"
       style={bgText}
     >
-      <div className="overflow-hidden w-full max-w-[250px] max-h-[220px] left-0 bottom-[250px] shadow-2xl">
-        <img
-          src={character.media.src}
-          alt={character.media.alt}
-          className="w-full h-full"
-        />
-      </div>
-      <div className="flex flex-col justify-center items-center w-full">
-        <p className="font-Courier max-h-[220px] overflow-auto ">
-          {currentLocation.text.replaceAll("{name}", CContext.name)}
-        </p>
-        <div className="flex gap-4 mt-4">
-          {currentLocation.path.map((_, i) => (
-            <button
-              key={i}
-              className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
-              onClick={() => {
-                setLocation(currentLocation.path[i]);
-                setPrevLocation(context.location);
-              }}
-            >
-              {currentLocation.path[i]}
-            </button>
-          ))}
-          {currentLocation.enemy.map((_, i) => (
-            <button
-              key={i}
-              className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
-              onClick={() => {
-                context.setFighting(true);
-                setPrevLocation(context.location);
-                context.setMonsterHP(MonstersList[currentLocation.enemy[i]].hp);
-              }}
-            >
-              Fight {currentLocation.enemy[i]}
-            </button>
-          ))}
+      <div className="flex items-center justify-between w-full ">
+        <div className="overflow-hidden w-full max-w-[250px] max-h-[220px] left-0 bottom-[250px] shadow-2xl">
+          <img
+            src={character.media.src}
+            alt={character.media.alt}
+            className="w-full h-full border-4 border-black"
+          />
         </div>
-      </div>
-    </div>
-  );
-};
-
-const EnemyLocation = () => {
-  const CContext = useContext(CharacterContext);
-  const context = useContext(GameContext);
-  console.log(context.PrevLocation);
-  console.log(context.fighting);
-
-  const prevLocation = LocationList[context.PrevLocation];
-  const enemy = MonstersList[prevLocation.enemy[0]];
-  const character = CContext.character;
-
-  console.log(context.MonsterHP);
-  console.log(CContext.currentHP);
-
-  return (
-    <div>
-      <div></div>
-      <div className="w-full flex mt-10">
-        <div className="flex justify-between w-full">
-          <div className="flex flex-col max-w-[400px] ml-10">
-            <img
-              className="border-double border-spacing-5 border-8 border-s-4 border-green-600"
-              src={character.media.src}
-              alt={character.media.alt}
-            />
-            <HpBarCharacter />
-          </div>
-          <div className="flex flex-col max-w-[400px] mr-10">
-            <img
-              className="border-double border-spacing-5 border-8 border-s-4 border-red-700"
-              src={enemy.media.src}
-              alt={enemy.media.alt}
-            />
-            <HpBarEnemy />
+        <div className="flex flex-col justify-center items-center w-full">
+          <p className="font-Courier max-h-[220px] overflow-auto ">
+            {currentLocation.text.replaceAll("{name}", CContext.name)}
+          </p>
+          <div className="flex gap-4 mt-4">
+            {currentLocation.path.map((_, i) => (
+              <button
+                key={i}
+                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                onClick={() => {
+                  setLocation(currentLocation.path[i]);
+                  setPrevLocation(context.location);
+                }}
+              >
+                {currentLocation.path[i]}
+              </button>
+            ))}
+            {currentLocation.enemy.map((_, i) => (
+              <button
+                key={i}
+                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                onClick={() => {
+                  context.setFighting(true);
+                  setPrevLocation(context.location);
+                  context.setMonsterHP(
+                    MonstersList[currentLocation.enemy[i]].hp
+                  );
+                }}
+              >
+                Fight {currentLocation.enemy[i]}
+              </button>
+            ))}
           </div>
         </div>
       </div>
-      {context.MonsterHP <= 0 ? <EnemyDefeated /> : <Fighting />}
-    </div>
-  );
-};
-
-const EnemyDefeated = () => {
-  const context = useContext(GameContext);
-  const CContext = useContext(CharacterContext);
-  const prevLocation = LocationList[context.PrevLocation];
-  const enemy = MonstersList[prevLocation.enemy[0]];
-  const loot = enemy.loot;
-
-  const bgText = {
-    backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
-  };
-
-  useEffect(() => {
-    const droppedItems = [];
-    for (let i = 0; i < loot.length; i++) {
-      const e: MonsterLoot = MonsterLootList[loot[i]];
-
-      const r = Math.random();
-      console.log(r);
-
-      if (r <= e.dropChance) {
-        droppedItems.push(e);
-      }
-    }
-
-    CContext.setInventory([...CContext.Inventory, ...droppedItems]);
-  }, []);
-
-  return (
-    <div
-      className="bg-no-repeat bg-cover w-full h-auto px-[60px] py-10 pt-[100px] flex flex-col items-center gap-6 absolute bottom-0 mb-[-100px]"
-      style={bgText}
-    >
-      <h2 className="font-uncial text-5xl">Enemy Defeated</h2>
-      <div className=" flex gap-10">
-        <button
-          className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-4xl"
-          onClick={() => {
-            context.setLocation(context.PrevLocation);
-            context.setFighting(false);
-          }}
-        >
-          Return
-        </button>
+      <div className="w-full">
+        <HpBarCharacter />
       </div>
     </div>
-  );
-};
-
-const Fighting = () => {
-  const CContext = useContext(CharacterContext);
-  const context = useContext(GameContext);
-  const characterAttack = CContext.characterAttack;
-  const bgText = {
-    backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
-  };
-  const prevLocation = LocationList[context.PrevLocation];
-
-  const enemy = MonstersList[prevLocation.enemy[0]];
-
-  return (
-    <div
-      className="bg-no-repeat bg-cover w-full h-auto px-[60px] py-10 pt-[100px] flex flex-col items-center gap-6 absolute bottom-0 mb-[-100px]"
-      style={bgText}
-    >
-      <div className=" flex gap-10">
-        <button
-          className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-4xl"
-          onClick={() => {
-            context.setMonsterHP(context.MonsterHP - characterAttack);
-            CContext.setCurrentHP(CContext.currentHP - enemy.attack);
-          }}
-        >
-          Attack
-        </button>
-        <button
-          className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-4xl"
-          onClick={() => {
-            context.setLocation(context.PrevLocation);
-            context.setFighting(false);
-          }}
-        >
-          Run
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export const LootEnemy = () => {
-  const context = useContext(GameContext);
-  const CContext = useContext(CharacterContext);
-  const prevLocation = LocationList[context.PrevLocation];
-  const enemy = MonstersList[prevLocation.enemy[0]];
-
-  const loot = enemy.loot;
-  loot.map((e) =>
-    CContext.setInventory([...CContext.Inventory, MonsterLootList[e]])
   );
 };
