@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { CharacterContext } from "../hooks/characterContext";
 import { GameContext } from "../hooks/gameContext";
 import { MonstersList } from "../gameData/enemies";
-import { LocationList, Locations } from "./locations";
+import { LocationList, Locations } from "../gameData/locations";
 import { HpBarCharacter, HpBarEnemy } from "../components/hpBar";
 import { MonsterLootList } from "../gameData/loot";
 import { MonsterLoot } from "../gameData/loot";

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .button {
+    @apply border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl;
+  }
+}
+
 .hp-bar {
   width: 100%;
   height: 20px;

@@ -1,21 +1,23 @@
 import { useContext } from "react";
 import { GameContext } from "../hooks/gameContext";
-import { LocationList } from "../locations/locations";
+import { LocationList } from "../gameData/locations";
 import { MonstersList } from "../gameData/enemies";
 import { HpBarCharacter } from "../components/hpBar";
 import { CharacterContext } from "../hooks/characterContext";
 import { Inventory } from "../components/inventory";
 import { Shop, ShopInventory } from "../locations/shop";
 import { EnemyLocation } from "../locations/combat";
+import { NPCLocation } from "../locations/npcLocation";
+import { NPCList } from "../gameData/NPC";
+import { QuestFolder } from "../components/questFolder";
 
 export const GamePage = () => {
   const context = useContext(GameContext);
 
-  const currentLocation = LocationList[context.location];
-
   const bgImageStyle = {
-    backgroundImage: `url(${currentLocation.media.src})`,
+    backgroundImage: `url(${context.bgImage.src})`,
   };
+  console.log("Quest:", context.activeQuest);
 
   return (
     <div className="bg-black w-full h-screen flex justify-center">
@@ -33,6 +35,8 @@ export const GamePage = () => {
           <EnemyLocation />
         ) : context.location === "Shop" ? (
           <Shop />
+        ) : context.NPC ? (
+          <NPCLocation />
         ) : (
           <Location />
         )}
@@ -79,6 +83,14 @@ const NormalTop = () => {
           <Inventory />
         </div>
       </details>
+      <details>
+        <summary className="cursor-pointer list-none text-2xl mr-7 font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
+          Quests
+        </summary>
+        <div className="absolute max-w-[800px] right-7 mt-4 bg-black px-9 py-4 border-2 border-[#d9bf9e] h-auto z-10">
+          <QuestFolder />
+        </div>
+      </details>
     </div>
   );
 };
@@ -112,14 +124,15 @@ const Location = () => {
           <p className="font-Courier max-h-[220px] overflow-auto ">
             {currentLocation.text.replaceAll("{name}", CContext.name)}
           </p>
-          <div className="flex gap-4 mt-4">
-            {currentLocation.path.map((_, i) => (
+          <div className="flex flex-wrap gap-4 mt-4 mx-4">
+            {currentLocation.path.map((e, i) => (
               <button
                 key={i}
-                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                className="button"
                 onClick={() => {
                   setLocation(currentLocation.path[i]);
                   setPrevLocation(context.location);
+                  context.setBgImg(LocationList[e].media);
                 }}
               >
                 {currentLocation.path[i]}
@@ -128,7 +141,7 @@ const Location = () => {
             {currentLocation.enemy.map((_, i) => (
               <button
                 key={i}
-                className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
+                className="button"
                 onClick={() => {
                   context.setFighting(true);
                   setPrevLocation(context.location);
@@ -138,6 +151,19 @@ const Location = () => {
                 }}
               >
                 Fight {currentLocation.enemy[i]}
+              </button>
+            ))}
+            {currentLocation.npc.map((_, i) => (
+              <button
+                key={i}
+                className="button"
+                onClick={() => {
+                  setPrevLocation(context.location);
+                  context.setNPC(currentLocation.npc[i]);
+                  context.setBgImg(NPCList[currentLocation.npc[i]].media);
+                }}
+              >
+                Talk with the {currentLocation.npc[i]}
               </button>
             ))}
           </div>

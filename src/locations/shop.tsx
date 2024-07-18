@@ -9,7 +9,7 @@ import {
 import { GameContext } from "../hooks/gameContext";
 import { CharacterContext } from "../hooks/characterContext";
 import { useContext } from "react";
-import { LocationList } from "./locations";
+import { LocationList } from "../gameData/locations";
 import Popup from "reactjs-popup";
 
 export const Shop = () => {

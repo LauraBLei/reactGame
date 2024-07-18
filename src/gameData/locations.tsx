@@ -1,11 +1,13 @@
-import { Media } from "../gameData/characters";
-import { MonsterNames } from "../gameData/enemies";
+import { Media } from "./characters";
+import { MonsterNames } from "./enemies";
+import { NPCNames } from "./NPC";
 
 export type Location = {
   text: string;
   media: Media;
   path: Locations[];
   enemy: MonsterNames[];
+  npc: NPCNames[];
 };
 
 export type LocationType = {
@@ -38,6 +40,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.outsideTavern],
     enemy: [],
+    npc: [NPCNames.Bartender],
   },
   "Ironwood Avenue": {
     text: "Ironwood Avenue",
@@ -47,6 +50,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.EmeraldPlaza, Locations.Tavern, Locations.BackGate],
     enemy: [],
+    npc: [],
   },
   "Emerald Plaza": {
     text: "Emerald Plaza",
@@ -56,6 +60,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.outsideTavern, Locations.CityGates, Locations.shop],
     enemy: [],
+    npc: [NPCNames.OldLady],
   },
   "City Gates": {
     text: "City Gates",
@@ -65,6 +70,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.EmeraldPlaza, Locations.Eldervale],
     enemy: [],
+    npc: [],
   },
   "Ironwood Gate": {
     text: "Ironwood Gate",
@@ -74,6 +80,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.EvershadeForest, Locations.outsideTavern],
     enemy: [],
+    npc: [],
   },
   Eldervale: {
     text: "Eldervale",
@@ -88,6 +95,7 @@ export const LocationList: LocationType = {
       Locations.AetherPeak,
     ],
     enemy: [],
+    npc: [],
   },
   "Circle Of The Gods": {
     text: "Circle Of The Gods",
@@ -97,6 +105,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.Eldervale],
     enemy: [],
+    npc: [],
   },
   "Evershade Forest": {
     text: "Evershade Forest",
@@ -110,6 +119,7 @@ export const LocationList: LocationType = {
       Locations.ElderglowLake,
     ],
     enemy: [],
+    npc: [],
   },
   "Crystal Caves": {
     text: "Crystal Caves",
@@ -119,6 +129,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.EvershadeForest],
     enemy: [MonsterNames.FeatherLeaf],
+    npc: [],
   },
   "Elderglow Lake": {
     text: "Elderglow Lake",
@@ -128,6 +139,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.EvershadeForest],
     enemy: [MonsterNames.Siren],
+    npc: [],
   },
   Shop: {
     text: "Shop",
@@ -137,6 +149,7 @@ export const LocationList: LocationType = {
     },
     path: [Locations.EmeraldPlaza],
     enemy: [],
+    npc: [],
   },
   "Tavern Room": {
     text: "You were found unconscious by a villager and brought to a room at the Tavern, the doctor took a look at you, but it cost you some money.",
@@ -146,5 +159,6 @@ export const LocationList: LocationType = {
     },
     path: [Locations.Tavern],
     enemy: [],
+    npc: [],
   },
 };
