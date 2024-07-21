@@ -85,13 +85,13 @@ export const Inventory = () => {
     }
   };
 
-  const equipedWeapon = CContext.weapon;
+  const equippedWeapon = CContext.weapon;
 
-  const equipedBoots = CContext.boots;
+  const equippedBoots = CContext.boots;
 
-  const equipedChest = CContext.chest;
+  const equippedChest = CContext.chest;
 
-  const equipedGauntlets = CContext.gauntlet;
+  const equippedGauntlets = CContext.gauntlet;
 
   return (
     <div>
@@ -111,13 +111,13 @@ export const Inventory = () => {
           trigger={
             <button className="h-[90px] w-[90px] bg-[#d9bf9e]">
               <img
-                src={equipedChest?.media.src}
-                alt={equipedChest?.media.alt}
+                src={equippedChest?.media.src}
+                alt={equippedChest?.media.alt}
               />
             </button>
           }
         >
-          {equipedChest && (
+          {equippedChest && (
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
               <button
                 className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
@@ -134,13 +134,13 @@ export const Inventory = () => {
           trigger={
             <button className="h-[90px] w-[90px] bg-[#d9bf9e]">
               <img
-                src={equipedGauntlets?.media.src}
-                alt={equipedGauntlets?.media.alt}
+                src={equippedGauntlets?.media.src}
+                alt={equippedGauntlets?.media.alt}
               />
             </button>
           }
         >
-          {equipedGauntlets && (
+          {equippedGauntlets && (
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
               <button
                 className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
@@ -157,13 +157,13 @@ export const Inventory = () => {
           trigger={
             <button className="h-[90px] w-[90px] bg-[#d9bf9e]">
               <img
-                src={equipedBoots?.media.src}
-                alt={equipedBoots?.media.alt}
+                src={equippedBoots?.media.src}
+                alt={equippedBoots?.media.alt}
               />
             </button>
           }
         >
-          {equipedBoots && (
+          {equippedBoots && (
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
               <button
                 className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
@@ -180,13 +180,13 @@ export const Inventory = () => {
           trigger={
             <button className="h-[90px] w-[90px] bg-[#d9bf9e]">
               <img
-                src={equipedWeapon?.media.src}
-                alt={equipedWeapon?.media.alt}
+                src={equippedWeapon?.media.src}
+                alt={equippedWeapon?.media.alt}
               />
             </button>
           }
         >
-          {equipedWeapon && (
+          {equippedWeapon && (
             <div className="bg-[#d9bf9e] border-2 border-black p-2">
               <button
                 className="border-2 border-black px-4 py-1 cursor-pointer font-uncial text-2xl"
@@ -205,7 +205,6 @@ export const Inventory = () => {
           CContext.Inventory.map((e, i) => (
             <Popup
               trigger={
-                // <ImageButton key2={i + 33} src={e.media.src} alt={e.media.alt} />
                 <button className="h-[80px] w-[80px] bg-[#d9bf9e]">
                   <img key={i} src={e.media.src} alt={e.media.alt} />;
                 </button>

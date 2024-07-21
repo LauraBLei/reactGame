@@ -11,9 +11,8 @@ type GameContextType = {
   MonsterHP: number;
   NPC: NPCNames | null;
   activeQuest: Quest | null;
-  completedQuests: Quest[];
   bgImage: Media;
-  selectedQuest: string | null;
+  selectedQuest: string;
 
   setLocation: React.Dispatch<React.SetStateAction<Locations>>;
   setFighting: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,9 +20,8 @@ type GameContextType = {
   setMonsterHP: React.Dispatch<React.SetStateAction<number>>;
   setNPC: React.Dispatch<React.SetStateAction<NPCNames | null>>;
   setActiveQuest: React.Dispatch<React.SetStateAction<Quest | null>>;
-  setCompletedQuests: React.Dispatch<React.SetStateAction<Quest[]>>;
   setBgImg: React.Dispatch<React.SetStateAction<Media>>;
-  setSelectedQuest: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedQuest: React.Dispatch<React.SetStateAction<string>>;
 };
 export const GameContext = createContext<GameContextType>(
   {} as GameContextType
@@ -40,9 +38,8 @@ export const GameProvider = ({ children }: ContextProviderProps) => {
   const [MonsterHP, setMonsterHP] = useState(100);
   const [NPC, setNPC] = useState<NPCNames | null>(null);
   const [activeQuest, setActiveQuest] = useState<Quest | null>(null);
-  const [completedQuests, setCompletedQuests] = useState<Quest[]>([]);
   const [bgImage, setBgImg] = useState(LocationList[Locations.Tavern].media);
-  const [selectedQuest, setSelectedQuest] = useState<string | null>(null);
+  const [selectedQuest, setSelectedQuest] = useState<string>("");
 
   return (
     <GameContext.Provider
@@ -59,8 +56,6 @@ export const GameProvider = ({ children }: ContextProviderProps) => {
         setNPC,
         activeQuest,
         setActiveQuest,
-        completedQuests,
-        setCompletedQuests,
         bgImage,
         setBgImg,
         selectedQuest,

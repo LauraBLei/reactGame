@@ -7,19 +7,22 @@ import { LocationList, Locations } from "../gameData/locations";
 import { HpBarCharacter, HpBarEnemy } from "../components/hpBar";
 import { MonsterLootList } from "../gameData/loot";
 import { MonsterLoot } from "../gameData/loot";
+import { QuestItems } from "../gameData/questItems";
 
 export const EnemyLocation = () => {
+  const { MonsterHP, PrevLocation } = useContext(GameContext);
+  // const {} = useContext
   const CContext = useContext(CharacterContext);
   const context = useContext(GameContext);
   console.log(context.PrevLocation);
   console.log(context.fighting);
 
-  const prevLocation = LocationList[context.PrevLocation];
+  const prevLocation = LocationList[PrevLocation];
   const enemy = MonstersList[prevLocation.enemy[0]];
   const character = CContext.character;
 
-  console.log(context.MonsterHP);
-  console.log(CContext.currentHP);
+  // console.log(context.MonsterHP);
+  // console.log(CContext.currentHP);
 
   return (
     <div>
@@ -44,7 +47,7 @@ export const EnemyLocation = () => {
           </div>
         </div>
       </div>
-      {context.MonsterHP <= 0 ? <EnemyDefeated /> : <Fighting />}
+      {MonsterHP <= 0 ? <EnemyDefeated /> : <Fighting />}
     </div>
   );
 };
@@ -63,13 +66,20 @@ export const EnemyDefeated = () => {
   useEffect(() => {
     const droppedItems = [];
     for (let i = 0; i < loot.length; i++) {
-      const e: MonsterLoot = MonsterLootList[loot[i]];
+      const item = loot[i];
 
-      const r = Math.random();
-      console.log(r);
-
-      if (r <= e.dropChance) {
-        droppedItems.push(e);
+      if (item in MonsterLootList) {
+        const monsterLootItem: MonsterLoot = MonsterLootList[item];
+        const r = Math.random();
+        if (r <= monsterLootItem.dropChance) {
+          droppedItems.push(monsterLootItem);
+        }
+      } else if (item in QuestItems) {
+        const questItem = QuestItems[item];
+        const r = Math.random();
+        if (r <= questItem.dropChance) {
+          droppedItems.push(questItem);
+        }
       }
     }
 

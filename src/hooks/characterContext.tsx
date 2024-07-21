@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { Character, characters } from "../gameData/characters";
 import { WeaponType, ArmorType } from "../gameData/gear";
 import { MonsterLoot } from "../gameData/loot";
+import { item } from "../gameData/questItems";
 
 type characterContextType = {
   name: string;
@@ -10,7 +11,7 @@ type characterContextType = {
   character: Character;
   maxHP: number;
   gold: number;
-  Inventory: (WeaponType | ArmorType | MonsterLoot)[];
+  Inventory: (WeaponType | ArmorType | MonsterLoot | item)[];
   chest: ArmorType | null;
   gauntlet: ArmorType | null;
   boots: ArmorType | null;
@@ -23,7 +24,7 @@ type characterContextType = {
   setMaxHP: React.Dispatch<React.SetStateAction<number>>;
   setGold: React.Dispatch<React.SetStateAction<number>>;
   setInventory: React.Dispatch<
-    React.SetStateAction<(WeaponType | ArmorType | MonsterLoot)[]>
+    React.SetStateAction<(WeaponType | ArmorType | MonsterLoot | item)[]>
   >;
   setChest: React.Dispatch<React.SetStateAction<ArmorType | null>>;
   setGauntlet: React.Dispatch<React.SetStateAction<ArmorType | null>>;
@@ -47,7 +48,7 @@ export const CharacterProvider = ({ children }: ContextProviderProps) => {
   const [maxHP, setMaxHP] = useState(100);
   const [gold, setGold] = useState(20);
   const [Inventory, setInventory] = useState<
-    (WeaponType | ArmorType | MonsterLoot)[]
+    (WeaponType | ArmorType | MonsterLoot | item)[]
   >([]);
   const [chest, setChest] = useState<ArmorType | null>(null);
   const [gauntlet, setGauntlet] = useState<ArmorType | null>(null);

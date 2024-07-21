@@ -1,11 +1,12 @@
 import { Media } from "./characters";
-import { loot } from "./loot";
+import { Loot } from "./loot";
+import { QuestItemNames } from "./questItems";
 
 export type Monster = {
   hp: number;
   attack: number;
   media: Media;
-  loot: loot[];
+  loot: (Loot | QuestItemNames)[];
 };
 
 export type MonstersList = {
@@ -25,7 +26,11 @@ export const MonstersList: MonstersList = {
       src: "./src/assets/enemies/jellyMonster.png",
       alt: "Image of a small little green furry monster",
     },
-    loot: [loot.FeatherLeafSkeleton, loot.FeatherLeafFluid],
+    loot: [
+      Loot.FeatherLeafSkeleton,
+      Loot.FeatherLeafFluid,
+      QuestItemNames.FeatherLeafMeat,
+    ],
   },
   Siren: {
     hp: 250,
@@ -34,6 +39,6 @@ export const MonstersList: MonstersList = {
       src: "./src/assets/enemies/siren.png",
       alt: "Image of a siren",
     },
-    loot: [loot.SirenSkull, loot.SirenScale],
+    loot: [Loot.SirenSkull, Loot.SirenScale],
   },
 };

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GameContext } from "../hooks/gameContext";
 import { LocationList } from "../gameData/locations";
 import { MonstersList } from "../gameData/enemies";
@@ -8,7 +8,7 @@ import { Inventory } from "../components/inventory";
 import { Shop, ShopInventory } from "../locations/shop";
 import { EnemyLocation } from "../locations/combat";
 import { NPCLocation } from "../locations/npcLocation";
-import { NPCList } from "../gameData/NPC";
+import { NPCList, NPCNames } from "../gameData/NPC";
 import { QuestFolder } from "../components/questFolder";
 
 export const GamePage = () => {
@@ -17,7 +17,6 @@ export const GamePage = () => {
   const bgImageStyle = {
     backgroundImage: `url(${context.bgImage.src})`,
   };
-  console.log("Quest:", context.activeQuest);
 
   return (
     <div className="bg-black w-full h-screen flex justify-center">
@@ -47,7 +46,7 @@ export const GamePage = () => {
 
 const InShop = () => {
   return (
-    <div className="mr-7  mt-6 flex justify-between w-full">
+    <div className="mr-7  mt-6 flex justify-between w-full mb-3">
       <div className="max-w-[200px] ml-7">
         <details>
           <summary className="cursor-pointer list-none text-2xl font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
@@ -74,7 +73,18 @@ const InShop = () => {
 
 const NormalTop = () => {
   return (
-    <div className="flex mr-7 place-self-end mt-7">
+    <div className="flex mr-7 place-self-end mt-7 mb-3">
+      <details>
+        <summary className="cursor-pointer list-none text-2xl mr-7 font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
+          Map
+        </summary>
+        <div className="absolute w-full right-0 mt-4 bg-black px-9 py-4 border-2 border-[#d9bf9e] h-auto z-10">
+          <img
+            src="./src/assets/bg-images/Tomplania.jpg"
+            alt="Map over the world Tomplania"
+          />
+        </div>
+      </details>
       <details>
         <summary className="cursor-pointer list-none text-2xl mr-7 font-uncial bg-[#d9bf9e] text-black text-center px-4 py-1 border-2 border-black">
           Inventory
@@ -96,17 +106,31 @@ const NormalTop = () => {
 };
 
 const Location = () => {
-  const context = useContext(GameContext);
-  const CContext = useContext(CharacterContext);
+  const { name, character } = useContext(CharacterContext);
 
-  const currentLocation = LocationList[context.location];
+  const {
+    setFighting,
+    setMonsterHP,
+    setNPC,
+    setBgImg,
+    location,
+    setLocation,
+    setPrevLocation,
+  } = useContext(GameContext);
+
+  const currentLocation = LocationList[location];
 
   const bgText = {
     backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
   };
-  const setLocation = context.setLocation;
-  const character = CContext.character;
-  const setPrevLocation = context.setPrevLocation;
+
+  useEffect(() => {}, []);
+
+  const checkIfNpcHasBeenVisited = (npcName: NPCNames) => {
+    const npc = NPCList.filter((npc) => npcName == npc.type)[0];
+    return npc.hasVisited ? npc.name : npc.type;
+  };
+
   return (
     <div
       className="bg-no-repeat bg-cover w-full h-auto px-[60px] py-10 pt-[100px] flex flex-col items-center gap-6 absolute bottom-0 mb-[-350px]"
@@ -122,7 +146,7 @@ const Location = () => {
         </div>
         <div className="flex flex-col justify-center items-center w-full">
           <p className="font-Courier max-h-[220px] overflow-auto ">
-            {currentLocation.text.replaceAll("{name}", CContext.name)}
+            {currentLocation.text.replaceAll("{name}", name)}
           </p>
           <div className="flex flex-wrap gap-4 mt-4 mx-4">
             {currentLocation.path.map((e, i) => (
@@ -131,8 +155,8 @@ const Location = () => {
                 className="button"
                 onClick={() => {
                   setLocation(currentLocation.path[i]);
-                  setPrevLocation(context.location);
-                  context.setBgImg(LocationList[e].media);
+                  setPrevLocation(location);
+                  setBgImg(LocationList[e].media);
                 }}
               >
                 {currentLocation.path[i]}
@@ -143,27 +167,27 @@ const Location = () => {
                 key={i}
                 className="button"
                 onClick={() => {
-                  context.setFighting(true);
-                  setPrevLocation(context.location);
-                  context.setMonsterHP(
-                    MonstersList[currentLocation.enemy[i]].hp
-                  );
+                  setFighting(true);
+                  setPrevLocation(location);
+                  setMonsterHP(MonstersList[currentLocation.enemy[i]].hp);
                 }}
               >
                 Fight {currentLocation.enemy[i]}
               </button>
             ))}
-            {currentLocation.npc.map((_, i) => (
+            {currentLocation.npc.map((npcName, i) => (
               <button
                 key={i}
                 className="button"
                 onClick={() => {
-                  setPrevLocation(context.location);
-                  context.setNPC(currentLocation.npc[i]);
-                  context.setBgImg(NPCList[currentLocation.npc[i]].media);
+                  const npc = NPCList.filter((npc) => npcName == npc.type)[0];
+                  setPrevLocation(location);
+                  setNPC(currentLocation.npc[i]);
+                  setBgImg(npc.media);
+                  console.log("npc", npc, "npcName:", npcName);
                 }}
               >
-                Talk with the {currentLocation.npc[i]}
+                Talk with the {checkIfNpcHasBeenVisited(npcName)}
               </button>
             ))}
           </div>

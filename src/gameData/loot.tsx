@@ -12,7 +12,7 @@ export type MonsterLootListType = {
   [key: string]: MonsterLoot;
 };
 
-export enum loot {
+export enum Loot {
   FeatherLeafSkeleton = "Feather Leaf Skeleton",
   FeatherLeafFluid = "Feather Leaf Fluid",
   SirenSkull = "Siren Skull",

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { GameContext } from "../hooks/gameContext";
-import { QuestList } from "../gameData/quests";
 
 export const QuestFolder = () => {
   const context = useContext(GameContext);
@@ -22,7 +21,7 @@ export const QuestFolder = () => {
       ) : (
         <div>
           <h1 className="font-Courier font-bold text-2xl text-white">
-            {quest?.FirstText}
+            {quest?.name}
           </h1>
           <div className="ml-5 flex flex-col gap-4 mt-2">
             <p className="font-Courier font-bold text-1xl text-white">
