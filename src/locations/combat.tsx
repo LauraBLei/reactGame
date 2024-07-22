@@ -60,7 +60,7 @@ export const EnemyDefeated = () => {
   const loot = enemy.loot;
 
   const bgText = {
-    backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
+    backgroundImage: `url("./assets/bg-images/textbg.png")`,
   };
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export const Fighting = () => {
   const context = useContext(GameContext);
   const characterAttack = CContext.characterAttack;
   const bgText = {
-    backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
+    backgroundImage: `url("./assets/bg-images/textbg.png")`,
   };
   const prevLocation = LocationList[context.PrevLocation];
 

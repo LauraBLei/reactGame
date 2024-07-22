@@ -14,7 +14,7 @@ export const NPCLocation = () => {
 
   // const ActiveQuest = context.activeQuest;
   const bgText = {
-    backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
+    backgroundImage: `url("./assets/bg-images/textbg.png")`,
   };
 
   const [page, setPage] = useState(0);
@@ -78,7 +78,7 @@ export const NPCLocation = () => {
             </h3>
             <img
               className="w-[50px]"
-              src="./src/assets/items/coins/gold.png"
+              src="./assets/items/coins/gold.png"
               alt="Image og gold coins"
             />
           </div>

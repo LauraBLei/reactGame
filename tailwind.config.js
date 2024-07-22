@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        world: "url('./src/assets/bg-images/Game_world.png')",
+        world: "url('./public/assets/bg-images/GameWorld.png')",
       },
       fontFamily: {
         uncial: ['"Uncial Antiqua"', "system-ui"],

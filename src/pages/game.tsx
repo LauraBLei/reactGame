@@ -80,7 +80,7 @@ const NormalTop = () => {
         </summary>
         <div className="absolute w-full right-0 mt-4 bg-black px-9 py-4 border-2 border-[#d9bf9e] h-auto z-10">
           <img
-            src="./src/assets/bg-images/Tomplania.jpg"
+            src="./assets/bg-images/Tomplania.jpg"
             alt="Map over the world Tomplania"
           />
         </div>
@@ -121,7 +121,7 @@ const Location = () => {
   const currentLocation = LocationList[location];
 
   const bgText = {
-    backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
+    backgroundImage: `url("./assets/bg-images/textbg.png")`,
   };
 
   useEffect(() => {}, []);

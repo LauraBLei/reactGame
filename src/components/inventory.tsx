@@ -99,7 +99,7 @@ export const Inventory = () => {
         <div className="flex">
           <img
             className="w-[50px] h-[50px]"
-            src="./src/assets/items/coins/gold.png"
+            src="./assets/items/coins/gold.png"
             alt="Image og gold coins"
           />
           <h2 className="text-white font-uncial text-2xl">{CContext.gold}</h2>

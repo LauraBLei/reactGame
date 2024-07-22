@@ -23,7 +23,7 @@ export const QuestItems: QuestItemsType = {
     cost: 1,
     dropChance: 1,
     media: {
-      src: "./src/assets/items/monsterLoot/icon25.png",
+      src: "./assets/items/monsterLoot/icon25.png",
       alt: "Feather Leaf Meat",
     },
   },

@@ -5,10 +5,16 @@ import { CharacterContext } from "../hooks/characterContext";
 
 export const CharacterSelection = () => {
   const context = useContext(CharacterContext);
+  const bgText = {
+    backgroundImage: `url("./assets/bg-images/GameWorld.png")`,
+  };
 
   return (
     <>
-      <div className="relative flex justify-center items-center bg-world h-screen bg-no-repeat bg-cover text-white font-uncial">
+      <div
+        className="relative flex justify-center items-center h-screen bg-no-repeat bg-cover text-white font-uncial"
+        style={bgText}
+      >
         <div className="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
         <div className="z-10 flex flex-col items-center gap-6 w-full">
           <h1 className="text-8xl">Choose Your Character</h1>

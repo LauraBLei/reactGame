@@ -23,7 +23,7 @@ export const MonstersList: MonstersList = {
     hp: 100,
     attack: 5,
     media: {
-      src: "./src/assets/enemies/jellyMonster.png",
+      src: "./assets/enemies/jellyMonster.png",
       alt: "Image of a small little green furry monster",
     },
     loot: [
@@ -36,7 +36,7 @@ export const MonstersList: MonstersList = {
     hp: 250,
     attack: 30,
     media: {
-      src: "./src/assets/enemies/siren.png",
+      src: "./assets/enemies/siren.png",
       alt: "Image of a siren",
     },
     loot: [Loot.SirenSkull, Loot.SirenScale],

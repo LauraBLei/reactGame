@@ -19,7 +19,7 @@ export const Shop = () => {
   const currentLocation = LocationList[context.location];
 
   const bgText = {
-    backgroundImage: `url("./src/assets/bg-images/textbg.png")`,
+    backgroundImage: `url("./assets/bg-images/textbg.png")`,
   };
   const setLocation = context.setLocation;
   const character = CContext.character;

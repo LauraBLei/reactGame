@@ -26,7 +26,7 @@ export const MonsterLootList: MonsterLootListType = {
     cost: 2,
     dropChance: 1,
     media: {
-      src: "./src/assets/items/monsterLoot/15.png",
+      src: "./assets/items/monsterLoot/15.png",
       alt: "Image of a Feather Leaf Skull",
     },
   },
@@ -36,7 +36,7 @@ export const MonsterLootList: MonsterLootListType = {
     cost: 5,
     dropChance: 0.5,
     media: {
-      src: "./src/assets/items/Potions/potion4.png",
+      src: "./assets/items/Potions/potion4.png",
       alt: "Image of a green potion bottle with leafs on it",
     },
   },
@@ -46,7 +46,7 @@ export const MonsterLootList: MonsterLootListType = {
     cost: 30,
     dropChance: 0.7,
     media: {
-      src: "./src/assets/items/monsterLoot/icon8.png",
+      src: "./assets/items/monsterLoot/icon8.png",
       alt: "Image of a siren skull",
     },
   },
@@ -56,7 +56,7 @@ export const MonsterLootList: MonsterLootListType = {
     cost: 50,
     dropChance: 0.3,
     media: {
-      src: "./src/assets/items/monsterLoot/Icon38.png",
+      src: "./assets/items/monsterLoot/Icon38.png",
       alt: "Image of a siren skull",
     },
   },

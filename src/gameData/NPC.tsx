@@ -36,7 +36,7 @@ export const NPCList2: NPCtype[] = [
     },
     quests: [QuestNames.SecretIngredient],
     media: {
-      src: "./src/assets/npc/oldLady.png",
+      src: "./assets/npc/oldLady.png",
       alt: "An old lady standing in front of some townhouses, she has a sunhat on, and holding a basket in her hand.",
     },
   },
@@ -52,7 +52,7 @@ export const NPCList2: NPCtype[] = [
     },
     quests: [],
     media: {
-      src: "./src/assets/npc/bartender.png",
+      src: "./assets/npc/bartender.png",
       alt: "Image of a male bartender with grey hair, green shirt and brown apron.",
     },
   },

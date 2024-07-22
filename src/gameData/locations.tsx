@@ -35,7 +35,7 @@ export const LocationList: LocationType = {
   Tavern: {
     text: "This is the tavern",
     media: {
-      src: "./src/assets/village/tavern.png",
+      src: "./assets/village/tavern.png",
       alt: "",
     },
     path: [Locations.outsideTavern],
@@ -45,7 +45,7 @@ export const LocationList: LocationType = {
   "Ironwood Avenue": {
     text: "Ironwood Avenue",
     media: {
-      src: "./src/assets/village/ironwoodAvenue.png",
+      src: "./assets/village/ironwoodAvenue.png",
       alt: "",
     },
     path: [Locations.EmeraldPlaza, Locations.Tavern, Locations.BackGate],
@@ -55,7 +55,7 @@ export const LocationList: LocationType = {
   "Emerald Plaza": {
     text: "Emerald Plaza",
     media: {
-      src: "./src/assets/village/EmeraldPlaza.png",
+      src: "./assets/village/EmeraldPlaza.png",
       alt: "",
     },
     path: [Locations.outsideTavern, Locations.CityGates, Locations.shop],
@@ -65,7 +65,7 @@ export const LocationList: LocationType = {
   "City Gates": {
     text: "City Gates",
     media: {
-      src: "./src/assets/village/backGate.png",
+      src: "./assets/village/backGate.png",
       alt: "",
     },
     path: [Locations.EmeraldPlaza, Locations.Eldervale],
@@ -75,7 +75,7 @@ export const LocationList: LocationType = {
   "Ironwood Gate": {
     text: "Ironwood Gate",
     media: {
-      src: "./src/assets/village/backGate.png",
+      src: "./assets/village/backGate.png",
       alt: "",
     },
     path: [Locations.EvershadeForest, Locations.outsideTavern],
@@ -110,7 +110,7 @@ export const LocationList: LocationType = {
   "Evershade Forest": {
     text: "Evershade Forest",
     media: {
-      src: "./src/assets/world/enchantedForest.png",
+      src: "./assets/world/enchantedForest.png",
       alt: "",
     },
     path: [
@@ -124,7 +124,7 @@ export const LocationList: LocationType = {
   "Crystal Caves": {
     text: "Crystal Caves",
     media: {
-      src: "./src/assets/world/crystalCave.png",
+      src: "./assets/world/crystalCave.png",
       alt: "",
     },
     path: [Locations.EvershadeForest],
@@ -134,7 +134,7 @@ export const LocationList: LocationType = {
   "Elderglow Lake": {
     text: "Elderglow Lake",
     media: {
-      src: "./src/assets/world/elderglowLake.png",
+      src: "./assets/world/elderglowLake.png",
       alt: "",
     },
     path: [Locations.EvershadeForest],
@@ -144,7 +144,7 @@ export const LocationList: LocationType = {
   Shop: {
     text: "Shop",
     media: {
-      src: "./src/assets/village/shop.png",
+      src: "./assets/village/shop.png",
       alt: "",
     },
     path: [Locations.EmeraldPlaza],
@@ -154,7 +154,7 @@ export const LocationList: LocationType = {
   "Tavern Room": {
     text: "You were found unconscious by a villager and brought to a room at the Tavern, the doctor took a look at you, but it cost you some money.",
     media: {
-      src: "./src/assets/village/tavernRoom.png",
+      src: "./assets/village/tavernRoom.png",
       alt: "Image of a tavern room with a double bed, a fireplace and a window with a nice view of some mountains.",
     },
     path: [Locations.Tavern],

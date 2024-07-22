@@ -19,7 +19,7 @@ export const armor: ArmorType[] = [
   {
     name: "Sentry's Mail",
     media: {
-      src: "./src/assets/items/gear/armor2.png",
+      src: "./assets/items/gear/armor2.png",
       alt: "chest piece armor",
     },
     hp: 30,
@@ -29,7 +29,7 @@ export const armor: ArmorType[] = [
   {
     name: "Firelords Mail",
     media: {
-      src: "./src/assets/items/gear/armor1.png",
+      src: "./assets/items/gear/armor1.png",
       alt: "chest piece armor",
     },
     hp: 150,
@@ -39,7 +39,7 @@ export const armor: ArmorType[] = [
   {
     name: "Serpentbanes rope",
     media: {
-      src: "./src/assets/items/gear/Rope2.png",
+      src: "./assets/items/gear/Rope2.png",
       alt: "chest piece armor",
     },
     hp: 250,
@@ -52,7 +52,7 @@ export const hands: ArmorType[] = [
   {
     name: "Sentry's gauntlets",
     media: {
-      src: "./src/assets/items/gear/hands1.png",
+      src: "./assets/items/gear/hands1.png",
       alt: "gauntlets",
     },
     hp: 10,
@@ -62,7 +62,7 @@ export const hands: ArmorType[] = [
   {
     name: "Firelords Gauntlets",
     media: {
-      src: "./src/assets/items/gear/hands2.png",
+      src: "./assets/items/gear/hands2.png",
       alt: "gauntlets",
     },
     type: "Gauntlet",
@@ -75,7 +75,7 @@ export const boots: ArmorType[] = [
   {
     name: "Sentry's Boots",
     media: {
-      src: "./src/assets/items/gear/boots2.png",
+      src: "./assets/items/gear/boots2.png",
       alt: "Boot",
     },
     type: "Boot",
@@ -85,7 +85,7 @@ export const boots: ArmorType[] = [
   {
     name: "Firelords Boots",
     media: {
-      src: "./src/assets/items/gear/boots1.png",
+      src: "./assets/items/gear/boots1.png",
       alt: "Boots",
     },
     hp: 50,
@@ -98,7 +98,7 @@ export const weapons: WeaponType[] = [
   {
     name: "Elderglow Staff",
     media: {
-      src: "./src/assets/items/weapons/staffs/staff2.png",
+      src: "./assets/items/weapons/staffs/staff2.png",
       alt: "Staff",
     },
     type: "Staff",
@@ -108,7 +108,7 @@ export const weapons: WeaponType[] = [
   {
     name: "Serpentbanes staff",
     media: {
-      src: "./src/assets/items/weapons/staffs/staff4.png",
+      src: "./assets/items/weapons/staffs/staff4.png",
       alt: "Staff",
     },
     type: "Staff",
@@ -119,7 +119,7 @@ export const weapons: WeaponType[] = [
   {
     name: "Silverlight Sword",
     media: {
-      src: "./src/assets/items/weapons/daggers/dagger1.png",
+      src: "./assets/items/weapons/daggers/dagger1.png",
       alt: "Sword",
     },
     type: "Sword",
@@ -129,7 +129,7 @@ export const weapons: WeaponType[] = [
   {
     name: "Wraithblade",
     media: {
-      src: "./src/assets/items/weapons/daggers/dagger2.png",
+      src: "./assets/items/weapons/daggers/dagger2.png",
       alt: "Sword",
     },
     type: "Sword",
@@ -139,7 +139,7 @@ export const weapons: WeaponType[] = [
   {
     name: "Dragonsbane",
     media: {
-      src: "./src/assets/items/weapons/daggers/dagger3.png",
+      src: "./assets/items/weapons/daggers/dagger3.png",
       alt: "Dagger",
     },
     type: "Sword",

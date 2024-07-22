@@ -33,7 +33,7 @@ export const QuestFolder = () => {
               </h3>
               <img
                 className="w-[30px]"
-                src="./src/assets/items/coins/gold.png"
+                src="./assets/items/coins/gold.png"
                 alt="Image og gold coins"
               />
             </div>
